@@ -63,5 +63,8 @@ export default defineConfig(() => {
     optimizeDeps: {
       include: ['@ant-design/icons-vue', 'ant-design-vue'],
     },
+    server: {
+      port: 8888,
+    },
   };
 });

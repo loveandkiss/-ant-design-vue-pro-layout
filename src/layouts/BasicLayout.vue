@@ -17,9 +17,12 @@
         <h1>Preview Pro</h1>
       </router-link>
     </template>
+
     <template #rightContentRender>
       <RightContent :current-user="currentUser" />
     </template>
+
+    <!-- 面包屑 -->
     <!-- custom breadcrumb itemRender  -->
     <template #breadcrumbRender="{ route, params, routes }">
       <span v-if="routes.indexOf(route) === routes.length - 1">
@@ -31,7 +34,11 @@
         {{ route.breadcrumbName }}
       </router-link>
     </template>
+
+    <!-- 设置 -->
     <SettingDrawer v-model="proConfig" />
+
+    <!-- 路由 -->
     <RouterView v-slot="{ Component, route }">
       <transition name="slide-left" mode="out-in">
         <component :is="Component" :key="route.path" />
@@ -53,10 +60,11 @@ const state = reactive<Omit<RouteContextProps, 'menuData'>>({
   openKeys: [], // defualt openKeys
   selectedKeys: [], // default selectedKeys
 });
+
 const loading = ref(false);
 const proConfig = ref({
-  layout: 'mix',
-  navTheme: 'light',
+  layout: 'side', // side | mix | top
+  navTheme: 'light', // light | dark
   fixedHeader: true,
   fixSiderbar: true,
   splitMenus: true,
